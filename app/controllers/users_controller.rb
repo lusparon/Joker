@@ -1,18 +1,12 @@
 class UsersController < ApplicationController
-  def new
-  end
-
   def welcome
   end
 
-  def create
-    @user = User.new(
-        email: params[:user][:email],
-        password: params[:user][:password])
-    @user.save!
-    redirect_to '/game/start'
+  def index
+    @user = User.all
   end
 
-  def show
+  def test
+
   end
 end

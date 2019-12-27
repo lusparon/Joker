@@ -1,0 +1,20 @@
+<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+  <div class="large-12 columns">
+    <h1>Treehouse Poker</h1>
+    <div class="row">
+      <div class="large-6 columns">
+        <% @game.hands.take(2).each do |hand| %>
+          <%= render partial: 'computer_player', locals: {hand: hand, game: @game, reveal_cards: false} %>
+        <% end %>
+      </div>
+      <div class="large-6 columns">
+        <% @game.hands.drop(2).take(2).each do |hand| %>
+          <%= render partial: 'computer_player', locals: {hand: hand, game: @game, reveal_cards: false} %>
+        <% end %>
+      </div>
+    </div>
+    <%= render partial: 'human_player', locals: { game: @game } %>
+
+    <a href="/game/play" class="button button-primary expand">Display the winner</a>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+<div class="row">
+  <div class="large-12 columns">
+    <h1>Treehouse Poker</h1>
+    <div class="alert-box">The winner is <%= @game.players[@scorer.winning_hand.id] %> with
+      a <%= @scorer.winning_hand.rank.to_s.capitalize.tr("_", " ") %> </div>
+
+    <div class="row">
+      <div class="large-6 columns">
+        <% @game.hands.take(2).each do |hand| %>
+          <%= render partial: 'computer_player', locals: {hand: hand, game: @game, reveal_cards: true} %>
+        <% end %>
+      </div>
+      <div class="large-6 columns">
+        <% @game.hands.drop(2).take(2).each do |hand| %>
+          <%= render partial: 'computer_player', locals: {hand: hand, game: @game, reveal_cards: true} %>
+        <% end %>
+      </div>
+    </div>
+    <%= render partial: 'human_player', locals: { game: @game } %>
+    <a href="/game" class="button button-primary expand">Play again?</a>
+  </div>
+</div>
+</div>
